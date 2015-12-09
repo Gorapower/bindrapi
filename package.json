@@ -1,0 +1,9 @@
+{
+    "name": "mybindr",
+    "version": "0.0.1",
+    "description": "API to MyBindr DB",
+    "main": "server.js",
+    "dependencies": {
+        "express": "^4.13.3",
+        "redis": "3.0.5"
+    }
