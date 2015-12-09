@@ -19,6 +19,11 @@ app.configure(function() {
     // Simula DELETE y PUT                      
     app.use(express.methodOverride());                  
 });
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Rutas de nuestro API
 // GET de todos los amiibos
 app.get('/api/amiibos/:user', function(req, res) {  
@@ -42,42 +47,5 @@ app.post('api/amiibos/:url/:user', function(req, res) {
         client.rpush(['id', reply]);
     });
 });
-server.post('/your-rest-endpt/*', function(req,res){
-console.log('');
-console.log('req.url: '+req.url);
-console.log('req.headers: ');   
-console.dir(req.headers);
-console.log('req.body: ');
-console.dir(req.body);  
-
-var options = {
-    host: 'restAPI-IP' + ':' + '8080'
-
-    , protocol: 'http'
-    , pathname: 'your-rest-endpt/'
-};
-console.log('options: ');
-console.dir(options);   
-
-var reqUrl = url.format(options);
-console.log("Forward URL: "+reqUrl);
-
-var parsedUrl = url.parse(req.url, true);
-console.log('parsedUrl: ');
-console.dir(parsedUrl);
-
-var queryParams = parsedUrl.query;
-
-var path = parsedUrl.path;
-var substr = path.substring(path.lastIndexOf("rest/"));
-console.log('substr: ');
-console.dir(substr);
-
-reqUrl += substr;
-console.log("Final Forward URL: "+reqUrl);
-
-var newHeaders = {
-};
-
 
 app.listen(process.env.PORT);
