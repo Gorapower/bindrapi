@@ -9,16 +9,16 @@ client.on('connect', function() {
 });
 
 // Configuración
-app.configure(function() {  
-    // Localización de los ficheros estÃ¡ticos
-    app.use(express.static(__dirname + '/public'));
-    // Muestra un log de todos los request en la consola        
-    app.use(express.logger('dev')); 
-    // Permite cambiar el HTML con el método POST                   
-    app.use(express.bodyParser());
-    // Simula DELETE y PUT                      
-    app.use(express.methodOverride());                  
-});
+// app.configure(function() {  
+//     // Localización de los ficheros estÃ¡ticos
+//     app.use(express.static(__dirname + '/public'));
+//     // Muestra un log de todos los request en la consola        
+//     app.use(express.logger('dev')); 
+//     // Permite cambiar el HTML con el método POST                   
+//     app.use(express.bodyParser());
+//     // Simula DELETE y PUT                      
+//     app.use(express.methodOverride());                  
+// });
 // Rutas de nuestro API
 // GET de todos los amiibos
 app.get('/api/amiibos/:user', function(req, res) {  
