@@ -19,18 +19,13 @@ app.configure(function() {
     // Simula DELETE y PUT                      
     app.use(express.methodOverride());                  
 });
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 // Rutas de nuestro API
 // GET de todos los amiibos
 app.get('/api/amiibos/:user', function(req, res) {  
     client.lrange(req.params.user, 0, -1, function(err, replies) {
         replies.forEach(function (reply, index) {
             client.hgetall(reply, function (err, obj) {
-                res.json(JSON.stringify(obj));
+                res.jsonp(JSON.stringify(obj));
             });
         });
     });
